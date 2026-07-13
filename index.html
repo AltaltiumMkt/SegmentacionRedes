@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfiles Preliminares de Cliente — Altaltium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --negro:#000000;
+    --teal:#52BEC0;
+    --cyan:#00FFFF;
+    --gris-oscuro:#3B3B3B;
+    --gris-claro:#EBEBEE;
+    --gris-medio:#DFDFE1;
+    --blanco:#FFFFFF;
+    --serif:'Playfair Display', serif;
+    --sans:'Montserrat', sans-serif;
+    --dato:#8A8D90;
+    --patron:#0E9EA1;
+    --hipotesis:#000000;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    background:var(--blanco);
+    color:var(--negro);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--negro);
+    color:var(--blanco);
+    padding:76px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(115deg, transparent 40%, rgba(82,190,192,0.10) 41%, rgba(82,190,192,0.10) 42%, transparent 43%),
+      linear-gradient(115deg, transparent 55%, rgba(82,190,192,0.06) 56%, rgba(82,190,192,0.06) 58%, transparent 59%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:11.5px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--teal); font-weight:600; margin-bottom:26px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  .hero h1{
+    font-family:var(--sans); font-weight:800;
+    font-size:clamp(34px, 5vw, 56px);
+    line-height:1.06; max-width:820px; letter-spacing:-0.5px;
+  }
+  .hero h1 em{
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    color:var(--teal);
+  }
+  .hero .sub{
+    font-family:var(--serif); font-style:italic; font-size:19px;
+    color:var(--gris-medio); max-width:640px; margin-top:22px;
+  }
+  .status-pill{
+    margin-top:36px; display:inline-flex; align-items:center; gap:12px;
+    border:1px solid rgba(255,255,255,0.22); border-radius:999px;
+    padding:9px 20px 9px 10px; font-size:13px; color:var(--gris-claro);
+  }
+  .status-pill .tag{
+    background:var(--teal); color:var(--negro); font-weight:700;
+    border-radius:999px; padding:4px 12px; font-size:11.5px; letter-spacing:0.5px;
+  }
+  .hero-foot{
+    margin-top:56px; display:flex; gap:48px; flex-wrap:wrap;
+    border-top:1px solid rgba(255,255,255,0.14); padding-top:26px;
+  }
+  .hero-foot .stat b{
+    display:block; font-size:26px; font-weight:700; color:var(--blanco);
+  }
+  .hero-foot .stat span{
+    font-size:12.5px; color:var(--gris-medio); letter-spacing:0.3px;
+  }
+
+  /* ---------- SECTION shell ---------- */
+  section{padding:78px 0;}
+  .section-head{max-width:700px; margin-bottom:46px;}
+  .kicker{
+    font-size:11.5px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--teal); font-weight:700; margin-bottom:14px; display:block;
+  }
+  .section-head h2{
+    font-size:clamp(26px,3.2vw,38px); font-weight:700; letter-spacing:-0.3px;
+    line-height:1.12;
+  }
+  .section-head p{
+    margin-top:16px; color:var(--gris-oscuro); font-size:15.5px; max-width:640px;
+  }
+  .section-num{
+    font-family:var(--sans); font-weight:800; font-size:15px; color:var(--teal);
+    letter-spacing:1px;
+  }
+
+  /* ---------- INTRO SOURCES ---------- */
+  .src-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:8px;
+  }
+  @media (max-width:900px){ .src-grid{grid-template-columns:repeat(2,1fr);} }
+  .src-card{
+    border:1px solid var(--gris-medio); border-radius:14px; padding:20px 18px;
+    background:var(--gris-claro); transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .src-card:hover{transform:translateY(-4px); box-shadow:0 14px 30px -18px rgba(0,0,0,0.35);}
+  .src-card .ic{
+    width:38px; height:38px; border-radius:10px; background:var(--negro);
+    display:flex; align-items:center; justify-content:center; margin-bottom:14px;
+  }
+  .src-card .ic svg{width:19px; height:19px; stroke:var(--teal); fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;}
+  .src-card h4{font-size:14.5px; font-weight:700; margin-bottom:4px;}
+  .src-card .n{font-size:22px; font-weight:800; color:var(--negro);}
+  .src-card .lbl{font-size:11.5px; color:var(--gris-oscuro);}
+
+  .disclaimer{
+    margin-top:32px; border-left:3px solid var(--teal); background:var(--gris-claro);
+    padding:16px 20px; border-radius:0 10px 10px 0; font-size:14px; color:var(--gris-oscuro);
+  }
+  .disclaimer b{color:var(--negro);}
+
+  /* ---------- FLOW DIAGRAM ---------- */
+  .flow-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px; align-items:stretch;
+  }
+  @media (max-width:900px){ .flow-grid{grid-template-columns:1fr 1fr;} }
+  .flow-card{
+    border:1px solid var(--gris-medio); border-radius:16px; padding:24px 20px;
+    display:flex; flex-direction:column; gap:14px; position:relative; background:var(--blanco);
+  }
+  .flow-card .ic{
+    width:44px; height:44px; border-radius:12px; background:var(--negro);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .flow-card .ic svg{width:22px; height:22px; stroke:var(--teal); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+  .flow-card h4{font-size:15px; font-weight:700;}
+  .flow-card .arrow{font-size:12px; color:var(--teal); font-weight:700; letter-spacing:0.3px;}
+  .flow-card p{font-size:13.5px; color:var(--gris-oscuro);}
+  .flow-card .badge{
+    margin-top:auto; align-self:flex-start; font-size:11px; font-weight:700;
+    background:var(--gris-claro); border-radius:999px; padding:5px 12px; color:var(--negro);
+  }
+  .converge{
+    display:flex; justify-content:center; margin:18px 0;
+  }
+  .converge svg{width:100%; max-width:420px; height:48px;}
+  .hub{
+    margin:0 auto; max-width:560px; text-align:center;
+    background:var(--negro); color:var(--blanco); border-radius:18px; padding:26px 30px;
+  }
+  .hub .tagline{font-size:11.5px; letter-spacing:2.5px; text-transform:uppercase; color:var(--teal); font-weight:700;}
+  .hub h3{font-family:var(--serif); font-style:italic; font-weight:500; font-size:22px; margin-top:10px;}
+  .hub p{font-size:13px; color:var(--gris-medio); margin-top:10px;}
+
+  /* ---------- LEGEND ---------- */
+  .legend{display:flex; gap:22px; flex-wrap:wrap; margin:34px 0 6px;}
+  .legend-item{display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--gris-oscuro); font-weight:600;}
+  .legend-dot{width:10px; height:10px; border-radius:3px;}
+
+  /* ---------- PROFILE CARDS ---------- */
+  .profiles-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:20px;
+  }
+  @media (max-width:820px){ .profiles-grid{grid-template-columns:1fr;} }
+  .pcard{
+    border:1px solid var(--gris-medio); border-radius:18px; overflow:hidden; background:var(--blanco);
+    display:flex; flex-direction:column;
+  }
+  .pcard-top{
+    background:var(--gris-claro); padding:22px 24px; display:flex; align-items:center; gap:16px;
+    border-bottom:1px solid var(--gris-medio);
+  }
+  .pcard-top .ic{
+    width:46px; height:46px; min-width:46px; border-radius:12px; background:var(--teal);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .pcard-top .ic svg{width:23px; height:23px; stroke:var(--negro); fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;}
+  .pcard-top .num{font-size:11px; font-weight:700; color:var(--teal); letter-spacing:1px;}
+  .pcard-top h3{font-size:18px; font-weight:800; letter-spacing:-0.2px;}
+  .pcard-body{padding:20px 24px 24px; display:flex; flex-direction:column; gap:14px; flex:1;}
+  .field{display:flex; flex-direction:column; gap:5px;}
+  .field .flabel{
+    font-size:10.5px; letter-spacing:1.2px; text-transform:uppercase; font-weight:700;
+    display:flex; align-items:center; gap:6px;
+  }
+  .field .flabel .swatch{width:7px;height:7px;border-radius:2px;}
+  .field p{font-size:13.5px; color:var(--gris-oscuro);}
+  .field .based{font-size:11.5px; color:var(--dato); font-style:italic; margin-top:2px;}
+  .content-tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .content-tags span{
+    font-size:11px; background:var(--negro); color:var(--blanco); border-radius:999px;
+    padding:4px 10px; font-weight:600;
+  }
+  .opp{
+    margin-top:auto; background:var(--gris-claro); border-radius:10px; padding:12px 14px;
+    font-size:12.5px; color:var(--negro); border-left:3px solid var(--teal);
+  }
+  .opp b{display:block; font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--teal); margin-bottom:4px;}
+
+  /* ---------- MARKET CONTEXT (external data) ---------- */
+  .ext-banner{
+    display:flex; align-items:center; gap:14px; background:var(--negro); color:var(--blanco);
+    border-radius:14px; padding:16px 22px; margin-bottom:40px;
+  }
+  .ext-banner .ic{
+    width:34px; height:34px; min-width:34px; border-radius:9px; background:var(--cyan);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .ext-banner .ic svg{width:17px; height:17px; stroke:var(--negro); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+  .ext-banner p{font-size:13.5px; color:var(--gris-medio);}
+  .ext-banner b{color:var(--blanco);}
+
+  .subsec{margin-top:56px;}
+  .subsec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:22px; flex-wrap:wrap;}
+  .subsec-head .sn{font-size:13px; font-weight:800; color:var(--teal); letter-spacing:1px;}
+  .subsec-head h3{font-size:21px; font-weight:800;}
+  .src-tag{
+    display:inline-flex; align-items:center; gap:5px; font-size:10.5px; font-weight:700;
+    letter-spacing:0.4px; text-transform:uppercase; padding:3px 10px; border-radius:999px;
+    border:1px solid var(--gris-medio); color:var(--gris-oscuro); background:var(--blanco);
+  }
+  .src-tag .d{width:6px;height:6px;border-radius:50%; background:#0EA5A8;}
+
+  /* funnel */
+  .funnel-wrap{display:flex; flex-direction:column; gap:10px;}
+  .funnel-row{
+    display:grid; grid-template-columns:200px 1fr 130px; align-items:center; gap:18px;
+  }
+  @media (max-width:760px){ .funnel-row{grid-template-columns:1fr; gap:6px;} }
+  .funnel-label{font-size:13px; font-weight:700; color:var(--negro);}
+  .funnel-label small{display:block; font-weight:500; color:var(--gris-oscuro); font-size:11.5px; margin-top:2px;}
+  .funnel-bar-track{background:var(--gris-claro); border-radius:8px; height:34px; overflow:hidden; position:relative;}
+  .funnel-bar-fill{
+    height:100%; background:linear-gradient(90deg, var(--negro), var(--teal)); border-radius:8px;
+    display:flex; align-items:center; padding-left:14px; color:var(--blanco); font-size:12px; font-weight:700;
+    min-width:60px;
+  }
+  .funnel-val{font-size:15px; font-weight:800; text-align:right;}
+  .funnel-note{font-size:12px; color:var(--gris-oscuro); margin-top:4px;}
+  .estimate-box{
+    margin-top:24px; border:1.5px dashed var(--teal); border-radius:14px; padding:20px 24px;
+    background:rgba(82,190,192,0.06);
+  }
+  .estimate-box .num{font-size:34px; font-weight:800; color:var(--negro);}
+  .estimate-box .lbl{font-size:12.5px; color:var(--gris-oscuro); margin-top:4px; max-width:560px;}
+
+  /* channel bars */
+  .chan-list{display:flex; flex-direction:column; gap:16px;}
+  .chan-row{display:grid; grid-template-columns:160px 1fr 60px; align-items:center; gap:16px;}
+  @media (max-width:700px){ .chan-row{grid-template-columns:110px 1fr 46px; gap:10px;} }
+  .chan-name{font-size:13px; font-weight:700;}
+  .chan-track{background:var(--gris-claro); border-radius:999px; height:14px; overflow:hidden;}
+  .chan-fill{height:100%; background:var(--teal); border-radius:999px;}
+  .chan-pct{font-size:14px; font-weight:800; text-align:right;}
+  .chan-src{font-size:11px; color:var(--dato); font-style:italic; margin-top:26px;}
+
+  /* zones */
+  .zone-cols{display:grid; grid-template-columns:1.1fr 1fr; gap:30px;}
+  @media (max-width:860px){ .zone-cols{grid-template-columns:1fr;} }
+  .zone-list{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  .zone-list li{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    background:var(--gris-claro); border-radius:10px; padding:11px 16px; font-size:13.5px;
+  }
+  .zone-list li .z-rank{font-weight:800; color:var(--teal); margin-right:10px; font-size:12px;}
+  .zone-list li .z-tag{font-size:10.5px; font-weight:700; color:var(--gris-oscuro); background:var(--blanco); border-radius:999px; padding:3px 9px;}
+  .interp-card{
+    border:1.5px dashed var(--gris-oscuro); border-radius:14px; padding:20px 22px; background:var(--blanco);
+  }
+  .interp-card h4{font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:12px; color:var(--negro);}
+  .interp-item{display:flex; gap:10px; margin-bottom:12px; font-size:13px; color:var(--gris-oscuro);}
+  .interp-item b{color:var(--negro); min-width:150px; display:inline-block;}
+
+  /* schedule */
+  .sched-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:820px){ .sched-grid{grid-template-columns:1fr;} }
+  .sched-card{border:1px solid var(--gris-medio); border-radius:14px; padding:20px 20px; background:var(--gris-claro);}
+  .sched-card h4{font-size:14.5px; font-weight:800; margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .sched-card .peak{font-size:26px; font-weight:800; color:var(--negro);}
+  .sched-card .peak-lbl{font-size:11.5px; color:var(--gris-oscuro); margin-bottom:10px;}
+  .sched-card .days{font-size:12px; color:var(--gris-oscuro); border-top:1px solid var(--gris-medio); padding-top:10px; margin-top:10px;}
+
+  .section-head-row{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
+  .ext-link-btn{
+    display:inline-flex; align-items:center; gap:8px; background:var(--negro); color:var(--blanco);
+    font-size:12.5px; font-weight:700; padding:10px 20px; border-radius:999px; text-decoration:none;
+    white-space:nowrap; transition:background .2s ease, color .2s ease; flex-shrink:0;
+  }
+  .ext-link-btn:hover{background:var(--teal); color:var(--negro);}
+  .ext-link-btn svg{width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+
+  /* ---------- CAMPAIGN STRATEGY SECTION ---------- */
+  .stage-funnel{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-bottom:8px;}
+  @media (max-width:820px){ .stage-funnel{grid-template-columns:1fr;} }
+  .stage-box{
+    background:var(--blanco); border:1px solid var(--gris-medio); padding:22px 20px; position:relative;
+  }
+  .stage-box:not(:last-child){border-right:none;}
+  .stage-box:first-child{border-radius:14px 0 0 14px;}
+  .stage-box:last-child{border-radius:0 14px 14px 0;}
+  @media (max-width:820px){
+    .stage-box{border-right:1px solid var(--gris-medio)!important; border-radius:0!important;}
+    .stage-box:first-child{border-radius:14px 14px 0 0!important;}
+    .stage-box:last-child{border-radius:0 0 14px 14px!important;}
+  }
+  .stage-n{font-size:10.5px; font-weight:800; letter-spacing:1px; color:var(--teal); text-transform:uppercase;}
+  .stage-name{font-size:16px; font-weight:800; margin:6px 0 4px;}
+  .stage-count{font-size:12px; color:var(--gris-oscuro); margin-bottom:14px;}
+  .stage-feed{
+    margin-top:12px; padding-top:12px; border-top:1px dashed var(--gris-medio); font-size:12px;
+  }
+  .stage-feed .cname-tag{
+    display:inline-block; background:var(--negro); color:var(--teal); font-weight:700; font-size:10.5px;
+    padding:3px 10px; border-radius:999px; margin-bottom:6px;
+  }
+  .stage-feed p{color:var(--gris-oscuro); font-size:12px; line-height:1.5;}
+  .stage-arrow{
+    position:absolute; right:-11px; top:50%; transform:translateY(-50%); z-index:2;
+    width:22px; height:22px; background:var(--teal); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  @media (max-width:820px){ .stage-arrow{display:none;} }
+  .stage-arrow svg{width:11px; height:11px; stroke:var(--negro); fill:none; stroke-width:2.5;}
+
+  .camp-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:900px){ .camp-grid{grid-template-columns:1fr;} }
+  .camp-card{border:1px solid var(--gris-medio); border-radius:16px; overflow:hidden; background:var(--blanco);}
+  .camp-card-top{background:var(--negro); color:var(--blanco); padding:20px 20px 18px;}
+  .camp-num{font-size:10.5px; font-weight:700; color:var(--teal); letter-spacing:1px; text-transform:uppercase;}
+  .camp-name{font-family:var(--serif); font-style:italic; font-size:19px; font-weight:600; margin-top:6px;}
+  .camp-mech{font-size:11.5px; color:var(--gris-medio); margin-top:8px;}
+  .camp-body{padding:18px 20px;}
+  .camp-body .lbl{font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--teal); margin-bottom:8px; margin-top:14px;}
+  .camp-body .lbl:first-child{margin-top:0;}
+  .camp-body p{font-size:12.5px; color:var(--gris-oscuro); line-height:1.55;}
+  .profile-chips{display:flex; flex-wrap:wrap; gap:6px;}
+  .profile-chip{
+    font-size:11px; font-weight:700; background:var(--gris-claro); border-radius:999px;
+    padding:5px 11px; color:var(--negro);
+  }
+  .rule-row{display:flex; gap:14px; align-items:flex-start; margin-bottom:14px;}
+  .rule-row:last-child{margin-bottom:0;}
+  .rule-n{
+    width:26px; height:26px; min-width:26px; border-radius:50%; background:var(--teal); color:var(--negro);
+    font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center;
+  }
+  .rule-row p{font-size:13px; color:var(--gris-medio);}
+  .rule-row b{color:var(--cyan); font-weight:700;}
+
+  /* ---------- CONCLUSION ---------- */
+  .conclusion{background:var(--negro); color:var(--blanco);}
+  .conclusion .section-head p{color:var(--gris-medio);}
+  .conclusion .kicker{color:var(--teal);}
+  .timeline{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:44px; position:relative;
+  }
+  @media (max-width:900px){ .timeline{grid-template-columns:1fr 1fr;} }
+  .tl-item{
+    border:1px solid rgba(255,255,255,0.16); border-radius:16px; padding:22px 18px;
+    background:rgba(255,255,255,0.03);
+  }
+  .tl-item.active{border-color:var(--teal); background:rgba(82,190,192,0.08);}
+  .tl-step{font-size:11px; font-weight:800; letter-spacing:1px; color:var(--teal);}
+  .tl-item h4{font-size:15px; font-weight:700; margin:10px 0 8px;}
+  .tl-item p{font-size:12.5px; color:var(--gris-medio);}
+  .tl-item .st{
+    display:inline-block; margin-top:12px; font-size:10.5px; font-weight:700;
+    padding:4px 10px; border-radius:999px; letter-spacing:0.5px;
+  }
+  .st.done{background:var(--teal); color:var(--negro);}
+  .st.next{background:rgba(82,190,192,0.15); color:var(--teal); border:1px solid var(--teal);}
+  .st.future{background:rgba(255,255,255,0.06); color:var(--gris-medio); border:1px solid rgba(255,255,255,0.16);}
+
+  .closing-line{
+    margin-top:56px; padding-top:36px; border-top:1px solid rgba(255,255,255,0.14);
+    font-family:var(--serif); font-style:italic; font-size:22px; max-width:760px; color:var(--gris-claro);
+    line-height:1.5;
+  }
+  .closing-line b{color:var(--teal); font-style:normal; font-family:var(--sans); font-weight:700;}
+
+  /* ---------- METHODOLOGY / FOOTER ---------- */
+  footer{background:var(--gris-claro); padding:44px 0 30px;}
+  details{
+    border:1px solid var(--gris-medio); border-radius:14px; background:var(--blanco); padding:0;
+  }
+  summary{
+    cursor:pointer; padding:18px 22px; font-weight:700; font-size:14px; list-style:none;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary .chev{transition:transform .25s ease; font-size:12px; color:var(--teal);}
+  details[open] summary .chev{transform:rotate(180deg);}
+  .method-body{padding:0 22px 22px; font-size:13px; color:var(--gris-oscuro);}
+  table.src-table{width:100%; border-collapse:collapse; margin-top:12px; font-size:12.5px;}
+  table.src-table th, table.src-table td{
+    text-align:left; padding:9px 10px; border-bottom:1px solid var(--gris-medio);
+  }
+  table.src-table th{color:var(--negro); font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:0.4px;}
+  .foot-brand{
+    margin-top:28px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:12px; color:var(--gris-oscuro);
+  }
+  .foot-brand b{color:var(--negro);}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="dot"></span> Altaltium Real Estate Solutions · Inteligencia de Cliente</div>
+    <h1 class="reveal">Ya podemos ver <em>quién</em> está del otro lado del mensaje.</h1>
+    <p class="sub reveal">Un primer análisis cruzado de interesados, CRM, citas, ventas y redes sociales para descubrir patrones de comportamiento del cliente.</p>
+    <div class="status-pill reveal"><span class="tag">Fase 1 · Descubrimiento</span> Hipótesis de trabajo — aún no es una segmentación definitiva</div>
+
+    <div class="hero-foot reveal">
+      <div class="stat"><b>21,650</b><span>Interesados analizados</span></div>
+      <div class="stat"><b>1,742</b><span>Leads en CRM</span></div>
+      <div class="stat"><b>219</b><span>Ventas cerradas</span></div>
+      <div class="stat"><b>315</b><span>Publicaciones en redes (FB · IG · TikTok)</span></div>
+      <div class="stat"><b>8</b><span>Perfiles preliminares identificados</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 1. INTRODUCCIÓN ============ -->
+<section id="intro">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">01</span>
+      <span class="kicker">Introducción</span>
+      <h2>Un mismo cliente deja huella en ocho lugares distintos</h2>
+      <p>Este análisis combina, por primera vez, información que hasta ahora vivía separada: interesados, CRM, citas, ventas, portales inmobiliarios, Facebook, Instagram y TikTok. El objetivo <b>no es clasificar de forma definitiva</b> a cada cliente, sino descubrir patrones de comportamiento que ya son visibles cuando se observan todas las fuentes juntas.</p>
+    </div>
+
+    <div class="src-grid reveal">
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h4>Interesados</h4>
+        <div class="n">21,650</div>
+        <div class="lbl">Contactos vía portales y web</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
+        <h4>CRM</h4>
+        <div class="n">1,742</div>
+        <div class="lbl">Leads gestionados por asesores</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg></div>
+        <h4>Citas</h4>
+        <div class="n">59</div>
+        <div class="lbl">Citas registradas y asistencia</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20l4-11 4 6 3-4 5 9z"/></svg></div>
+        <h4>Ventas</h4>
+        <div class="n">219</div>
+        <div class="lbl">Expedientes firmados</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
+        <h4>Portales</h4>
+        <div class="n">4</div>
+        <div class="lbl">Fuentes de exposición inmobiliaria</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 6.3 4.6L3 5l1 4"/></svg></div>
+        <h4>Facebook</h4>
+        <div class="n">88</div>
+        <div class="lbl">Publicaciones con métricas</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.6" cy="7.4" r="0.6" fill="var(--teal)"/></svg></div>
+        <h4>Instagram</h4>
+        <div class="n">169</div>
+        <div class="lbl">Publicaciones con métricas</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><polygon points="10,8 16,12 10,16"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h4>TikTok</h4>
+        <div class="n">58</div>
+        <div class="lbl">Publicaciones con métricas</div>
+      </div>
+    </div>
+
+    <div class="disclaimer reveal">
+      <b>Nota metodológica:</b> todas las cifras de este dashboard provienen directamente de las bases de datos de Altaltium (julio 2025 – julio 2026). Ningún número fue estimado o inventado. Donde el dato no permite una conclusión definitiva, se presenta como <b>patrón</b> o <b>hipótesis</b>, no como un hecho comprobado.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. DE DONDE VIENEN LOS PERFILES ============ -->
+<section id="sources" style="background:var(--gris-claro);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">02</span>
+      <span class="kicker">¿De dónde provienen los perfiles?</span>
+      <h2>Ningún perfil nace de una sola fuente</h2>
+      <p>Cada perfil preliminar es el resultado de cruzar señales de intención, seguimiento comercial, comportamiento de compra real y consumo de contenido. Así es como se construye cada uno:</p>
+    </div>
+
+    <div class="flow-grid reveal">
+      <div class="flow-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h4>Mensajes e interesados</h4>
+        <div class="arrow">→ Intención de compra</div>
+        <p>Qué tipo de inmueble buscan, en qué rango de precio y con qué urgencia lo comunican.</p>
+        <div class="badge">21,650 mensajes</div>
+      </div>
+      <div class="flow-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
+        <h4>CRM</h4>
+        <div class="arrow">→ Seguimiento y comportamiento comercial</div>
+        <p>Cuántas veces responden, qué tan rápido avanzan y qué motivo dan cuando cierran o abandonan.</p>
+        <div class="badge">1,742 leads</div>
+      </div>
+      <div class="flow-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20l4-11 4 6 3-4 5 9z"/></svg></div>
+        <h4>Ventas</h4>
+        <div class="arrow">→ Características de quienes sí compraron</div>
+        <p>Monto de anticipo, plazos de financiamiento y precio real pagado por quienes cerraron.</p>
+        <div class="badge">219 expedientes</div>
+      </div>
+      <div class="flow-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 6.3 4.6L3 5l1 4"/></svg></div>
+        <h4>Redes sociales</h4>
+        <div class="arrow">→ Intereses y tipo de contenido</div>
+        <p>Qué formatos y temas generan más vistas, "me gusta" y comentarios reales.</p>
+        <div class="badge">315 publicaciones</div>
+      </div>
+    </div>
+
+    <div class="converge reveal">
+      <svg viewBox="0 0 420 48" preserveAspectRatio="none">
+        <path d="M52 4 L210 40" stroke="#52BEC0" stroke-width="1.6" fill="none"/>
+        <path d="M158 4 L210 40" stroke="#52BEC0" stroke-width="1.6" fill="none"/>
+        <path d="M262 4 L210 40" stroke="#52BEC0" stroke-width="1.6" fill="none"/>
+        <path d="M368 4 L210 40" stroke="#52BEC0" stroke-width="1.6" fill="none"/>
+        <circle cx="210" cy="42" r="4" fill="#52BEC0"/>
+      </svg>
+    </div>
+
+    <div class="hub reveal">
+      <div class="tagline">El cruce de las cuatro fuentes</div>
+      <h3>8 perfiles preliminares de cliente</h3>
+      <p>Hipótesis de trabajo, construidas con datos reales — pendientes de validar en campo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. PERFILES ============ -->
+<section id="profiles">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">03</span>
+      <span class="kicker">Perfiles preliminares identificados</span>
+      <h2>Ocho maneras distintas de llegar a "sí"</h2>
+      <p>Cada tarjeta muestra el mismo tipo de información: motivación principal, comportamiento observado, el contenido con el que probablemente conecta y la oportunidad de comunicación. Son hipótesis de trabajo, no clasificaciones cerradas.</p>
+    </div>
+
+    <div class="legend reveal">
+      <div class="legend-item"><span class="legend-dot" style="background:var(--patron);"></span> Patrón observado en los datos</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--hipotesis);"></span> Hipótesis de interpretación</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--dato); border-radius:50%;"></span> Dato de respaldo</div>
+    </div>
+
+    <div class="profiles-grid reveal">
+
+      <!-- 1 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><polyline points="3,17 9,11 13,15 21,6"/><polyline points="14,6 21,6 21,13"/></svg></div>
+          <div><div class="num">PERFIL 01</div><h3>Inversionista Patrimonial</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Hacer crecer o proteger su patrimonio aprovechando el precio de adjudicación.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Concentra su interés en propiedades de mayor valor y solicita cita para producto Outlet o Premium con más frecuencia que el resto.</p>
+            <div class="based">Basado en: 42% de las citas registradas piden producto "Outlet" o "Premium".</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Comparativas de precio por zona</span><span>Retorno de inversión</span><span>Arquitectura</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Contenido con cifras de plusvalía y comparación contra el precio promedio de la zona.</div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+          <div><div class="num">PERFIL 02</div><h3>Comprador de Primera Vivienda</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Dejar de rentar y acceder, por primera vez, a una vivienda propia.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Se agrupa en el rango de precio más consultado de todo el catálogo y busca principalmente departamentos.</p>
+            <div class="based">Basado en: 27% de los interesados busca propiedades entre $1M–$1.5M; 75% busca departamento.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Historias de logro personal</span><span>Educativo sobre el proceso de compra</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>El video con más "me gusta" en términos absolutos de la cuenta trata sobre la dificultad de comprar una primera vivienda — ese ángulo emocional ya conecta.</div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><line x1="5" y1="19" x2="19" y2="5"/><circle cx="7" cy="7" r="2.4"/><circle cx="17" cy="17" r="2.4"/></svg></div>
+          <div><div class="num">PERFIL 03</div><h3>Comprador Dependiente de Crédito</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Comprar apoyándose en crédito Infonavit, Fovissste o un plan de financiamiento.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>La gran mayoría de las ventas cerradas se pagan a plazos, no de contado, y varias notas de cierre en CRM mencionan un monto de crédito específico.</p>
+            <div class="based">Basado en: 82% de las ventas firmadas usa un plan a 12 mensualidades; anticipo mediano = 40% del precio.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Explicación de trámites</span><span>Requisitos de crédito</span><span>Preguntas frecuentes</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Contenido que simplifica el proceso de crédito y financiamiento paso a paso.</div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15.5" y2="15.5"/></svg></div>
+          <div><div class="num">PERFIL 04</div><h3>Buscador de Oportunidades</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Encontrar el mejor precio posible frente al valor de mercado.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Menciona explícitamente la palabra "remate" en su mensaje inicial y muestra interés recurrente por el producto Outlet.</p>
+            <div class="based">Basado en: 98 mensajes de interesados mencionan "remate"; 25% de las citas piden producto Outlet.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Nuevos desarrollos / oportunidades</span><span>Transparencia del proceso</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Alertas tempranas de nuevas oportunidades — el contenido de un desarrollo específico fue de los más vistos en TikTok.</div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12,7 12,12 16,14"/></svg></div>
+          <div><div class="num">PERFIL 05</div><h3>Comprador por Necesidad</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Resolver una necesidad habitacional inmediata, más que planear una inversión a futuro.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Un grupo relevante de interesados busca renta, no venta, y su primer mensaje suele preguntar directamente por disponibilidad inmediata.</p>
+            <div class="based">Basado en: 1,673 interesados (8%) buscan renta; "¿sigue disponible?" es de las consultas más frecuentes.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Disponibilidad inmediata</span><span>Respuesta rápida por WhatsApp</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Canal de respuesta ágil y contenido con disponibilidad en tiempo real.</div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 16.5,14.5 18,22 12,18 6,22 7.5,14.5 2,9.5 9,9"/></svg></div>
+          <div><div class="num">PERFIL 06</div><h3>Comprador Aspiracional</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Mejorar su estilo de vida y estatus a través de la propiedad que compra.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Se inclina por el rango de precio más alto del catálogo y por el producto Premium al agendar cita.</p>
+            <div class="based">Basado en: 24% de los interesados consulta propiedades por encima de $3M; 17% de las citas piden Premium.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Fotografía editorial de arquitectura</span><span>Estilo de vida</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Storytelling visual aspiracional, consistente con la línea fotográfica actual de la marca.</div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="15"/></svg></div>
+          <div><div class="num">PERFIL 07</div><h3>Comprador Analítico</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Decidir con base en comparación de precios y certeza legal, no en impulso.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Interactúa poco antes de agendar, pero cuando llega a la cita, asiste con una tasa notablemente alta — señal de decisión ya investigada de antemano.</p>
+            <div class="based">Basado en: 78% de tasa de asistencia a citas registradas, con bajo número de actividades previas en CRM.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Comparativos de precio por alcaldía</span><span>Claridad del proceso legal</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Contenido tipo comparador de precios y explicación clara de la viabilidad jurídica del inmueble.</div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><polyline points="8,12 11,15 16,9"/></svg></div>
+          <div><div class="num">PERFIL 08</div><h3>Comprador Impulsado por la Confianza</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Vencer el miedo o la desconfianza que genera la palabra "remate bancario" antes de avanzar.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>El contenido sobre desconfianza y fraude en remates es, de forma consistente, el de mayor alcance en TikTok — muy por encima del contenido de producto.</p>
+            <div class="based">Basado en: el video sobre desconfianza en remates alcanzó 35,000 vistas, el tercer más visto de la cuenta.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Testimoniales</span><span>Respaldo legal (Despacho Palma y Asociados)</span><span>Transparencia del proceso</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Contenido de prueba social y respaldo legal explícito para reducir la fricción inicial.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. PANORAMA DE MERCADO (fuentes públicas) ============ -->
+<section id="market" style="background:var(--gris-claro);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">04</span>
+      <span class="kicker">Panorama de mercado</span>
+      <h2>¿Qué tan grande es la oportunidad fuera de nuestra propia base?</h2>
+      <p>Para dar contexto a los ocho perfiles, complementamos el análisis interno con datos públicos de mercado: demanda de vivienda en CDMX, canales de búsqueda, zonas de mayor actividad y horarios de consumo digital. Ninguno de estos datos proviene de las bases de Altaltium — todos están citados a su fuente original.</p>
+    </div>
+
+    <div class="ext-banner reveal">
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
+      <p><b>Esta sección usa exclusivamente fuentes públicas</b> (INEGI, INFONAVIT, Tinsa/Accumin, Ipsos, CONEVAL, Semrush, Comscore, Sprout Social, entre otras). Se combina con datos internos de Altaltium solo cuando se indica explícitamente, y esa conexión siempre se marca como interpretación propia, no como medición directa.</p>
+    </div>
+
+    <!-- 4.1 PROYECCIÓN -->
+    <div class="subsec reveal">
+      <div class="subsec-head">
+        <span class="sn">4.1</span>
+        <h3>¿Cuántas personas buscan vivienda en CDMX?</h3>
+        <span class="src-tag"><span class="d"></span>INEGI · IPSOS · CONEVAL</span>
+      </div>
+      <p style="color:var(--gris-oscuro); font-size:14px; max-width:680px; margin-bottom:26px;">No existe un conteo oficial de "personas buscando remates bancarios". Lo que sí existe es un embudo público de demanda general de vivienda, que da una idea sólida del tamaño del mercado potencial en la ciudad.</p>
+
+      <div class="funnel-wrap">
+        <div class="funnel-row">
+          <div class="funnel-label">Población CDMX<small>Censo INEGI 2020</small></div>
+          <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:100%;">9,209,944 habitantes</div></div>
+          <div class="funnel-val">100%</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label">Viviendas particulares habitadas<small>Censo INEGI 2020</small></div>
+          <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:82%;">2,756,319 viviendas</div></div>
+          <div class="funnel-val">—</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label">Sin vivienda propia<small>Extrapolación nacional (CONEVAL)</small></div>
+          <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:57%;">~57% de los hogares</div></div>
+          <div class="funnel-val">57%</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label">Aspira a comprar<small>Ipsos Housing Monitor (nacional)</small></div>
+          <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:44%;">76% de la población aspira a tener casa propia</div></div>
+          <div class="funnel-val">76%</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label">Busca en digital<small>Centro Urbano / Inmuebles24</small></div>
+          <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:37%;">80–85% de esas búsquedas</div></div>
+          <div class="funnel-val">82%</div>
+        </div>
+      </div>
+      <p style="font-size:11.5px; color:var(--dato); font-style:italic; margin-top:10px;">Nota: el ancho de las barras es ilustrativo (forma de embudo decreciente), no proporcional entre sí — cada etapa mide una base distinta (población total, viviendas, o % del paso anterior).</p>
+
+      <div class="estimate-box">
+        <div class="num">~900,000 – 1,200,000</div>
+        <div class="lbl">Hogares en CDMX que, combinando estas proporciones nacionales, podrían estar buscando activamente comprar vivienda en algún canal digital. <b>Es una estimación razonada, no un conteo oficial</b> — construida aplicando proporciones nacionales (CONEVAL, Ipsos) a la población real de CDMX (INEGI). Como referencia de escala: el portal líder del país, Inmuebles24, registra por sí solo más de 8 millones de visitas mensuales a nivel nacional.</div>
+      </div>
+    </div>
+
+    <!-- 4.2 CANALES -->
+    <div class="subsec reveal">
+      <div class="subsec-head">
+        <span class="sn">4.2</span>
+        <h3>¿Dónde buscan esa oportunidad?</h3>
+        <span class="src-tag"><span class="d"></span>Centro Urbano · Semrush · Estudio Monterrey UANL</span>
+      </div>
+      <div class="chan-list">
+        <div class="chan-row">
+          <div class="chan-name">Canales digitales (en general)</div>
+          <div class="chan-track"><div class="chan-fill" style="width:85%;"></div></div>
+          <div class="chan-pct">80–85%</div>
+        </div>
+        <div class="chan-row">
+          <div class="chan-name">Portal Inmuebles24</div>
+          <div class="chan-track"><div class="chan-fill" style="width:42%;"></div></div>
+          <div class="chan-pct">42%</div>
+        </div>
+        <div class="chan-row">
+          <div class="chan-name">Redes sociales</div>
+          <div class="chan-track"><div class="chan-fill" style="width:67%;"></div></div>
+          <div class="chan-pct">67%</div>
+        </div>
+        <div class="chan-row">
+          <div class="chan-name">Medios tradicionales</div>
+          <div class="chan-track"><div class="chan-fill" style="width:44%;"></div></div>
+          <div class="chan-pct">44%</div>
+        </div>
+      </div>
+      <div class="chan-src">% del total de búsquedas de vivienda que inician en canales digitales (Centro Urbano); % de búsquedas que pasan por Inmuebles24 sobre el total nacional (Inmuebles24); % de encuestados que ha usado redes sociales o medios tradicionales para buscar servicios inmobiliarios (estudio UANL, Monterrey — no exclusivo de CDMX). Las categorías no son mutuamente excluyentes: una misma persona usa varios canales.</div>
+
+      <div class="disclaimer" style="margin-top:28px;">
+        <b>Cruce con nuestros datos internos:</b> esto coincide con lo que ya vemos en el CRM de Altaltium — 86% de los leads formales llegan por Inmuebles24 y menos del 1% se registra directamente desde redes sociales. La lectura más probable: las redes generan interés y confianza, pero la conversión a lead todavía ocurre casi toda vía portales y WhatsApp.
+      </div>
+    </div>
+
+    <!-- 4.3 ZONAS -->
+    <div class="subsec reveal">
+      <div class="subsec-head">
+        <span class="sn">4.3</span>
+        <h3>¿Qué zonas de la ciudad concentran la demanda?</h3>
+        <span class="src-tag"><span class="d"></span>Tinsa/Accumin · El Sol de México · LaHaus</span>
+      </div>
+      <div class="zone-cols">
+        <div>
+          <ul class="zone-list">
+            <li><span><span class="z-rank">01</span>Cuauhtémoc</span><span class="z-tag">936 unidades vendidas 1T2026</span></li>
+            <li><span><span class="z-rank">02</span>Corredor Norte (ZMVM)</span><span class="z-tag">39.3% de la absorción total</span></li>
+            <li><span><span class="z-rank">03</span>Zona Centro (Cuauhtémoc, GAM, Iztacalco, V. Carranza)</span><span class="z-tag">25.8% de la absorción</span></li>
+            <li><span><span class="z-rank">04</span>Miguel Hidalgo · Cuauhtémoc · Cuajimalpa y otras</span><span class="z-tag">mayor oferta de renta (6 alcaldías)</span></li>
+            <li><span><span class="z-rank">05</span>Roma Norte · San Ángel</span><span class="z-tag">colonias preferidas, encuesta LaHaus CDMX</span></li>
+          </ul>
+        </div>
+        <div class="interp-card">
+          <h4>Cruce con datos internos de Altaltium (dato real)</h4>
+          <p style="font-size:12.5px; color:var(--gris-oscuro); margin-bottom:14px;">Nuestro propio Histórico de Ventas confirma el mismo patrón: las alcaldías con más operaciones firmadas por Altaltium son <b>Benito Juárez, Cuauhtémoc y Miguel Hidalgo</b> — justo las zonas de mayor demanda pública reportada. Esto valida que nuestra cartera está bien alineada con la demanda real de la ciudad.</p>
+          <h4 style="margin-top:18px;">Interpretación propia por perfil</h4>
+          <div class="interp-item"><b>Inversionista Patrimonial</b>Zonas de mayor apreciación anual: Oriente (+12.8%) y Centro (+10.9%).</div>
+          <div class="interp-item"><b>Primera Vivienda / Crédito</b>Alcaldías periféricas sugeridas para vivienda accesible: Tláhuac, GAM, Iztapalapa.</div>
+          <div class="interp-item"><b>Aspiracional / Patrimonial</b>Zonas premium reconocidas: Polanco, Lomas, Santa Fe (Miguel Hidalgo, Cuajimalpa).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4.4 HORARIOS -->
+    <div class="subsec reveal">
+      <div class="subsec-head">
+        <span class="sn">4.4</span>
+        <h3>¿A qué hora están más activos?</h3>
+        <span class="src-tag"><span class="d"></span>Comscore México · Sprout Social</span>
+      </div>
+      <div class="sched-grid">
+        <div class="sched-card">
+          <h4>Facebook</h4>
+          <div class="peak">18:00–21:00</div>
+          <div class="peak-lbl">Pico absoluto: martes y miércoles a las 18:00 hrs</div>
+          <div class="days">Mayor actividad martes–jueves. Caída notable los fines de semana, especialmente sábado.</div>
+        </div>
+        <div class="sched-card">
+          <h4>Instagram</h4>
+          <div class="peak">19:00–22:00</div>
+          <div class="peak-lbl">Pico absoluto: jueves 21:00 hrs</div>
+          <div class="days">Mejor franja miércoles–viernes por la noche. Domingo por la tarde (17:00–20:00) también fuerte para contenido ligero.</div>
+        </div>
+        <div class="sched-card">
+          <h4>TikTok</h4>
+          <div class="peak">14:00–21:00</div>
+          <div class="peak-lbl">Actividad sostenida martes–viernes, tarde y noche</div>
+          <div class="days">El consumo se extiende hasta la noche, coincidiendo con el tiempo de ocio después del trabajo o la escuela.</div>
+        </div>
+      </div>
+
+      <div class="interp-card" style="margin-top:22px;">
+        <h4>Interpretación propia por perfil (no es una medición directa)</h4>
+        <div class="interp-item"><b>Comprador por Necesidad</b>Probablemente activo a cualquier hora — su urgencia no sigue un horario de ocio.</div>
+        <div class="interp-item"><b>Comprador Analítico</b>Es razonable esperarlo en horario laboral, comparando opciones desde su escritorio.</div>
+        <div class="interp-item"><b>Aspiracional / Confianza</b>Coincide con los picos nocturnos de Instagram y TikTok (19:00–22:00), cuando el consumo es más emocional y de ocio.</div>
+        <p style="font-size:11.5px; color:var(--dato); font-style:italic; margin-top:6px;">No existe un estudio público que mida horarios de portales inmobiliarios por perfil de comprador — esta fila es una hipótesis de trabajo, no un dato medido.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 5. ESTRATEGIA DE CAMPAÑAS APLICADA AL EMBUDO ============ -->
+<section id="campanas-estrategia">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">05</span>
+      <span class="kicker">Estrategia de campañas → embudo</span>
+      <div class="section-head-row">
+        <h2>Tres campañas, cada una empujando una etapa distinta</h2>
+        <a class="ext-link-btn" href="https://altaltiummkt.github.io/CampanasCompraventa/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Ver estrategia original
+        </a>
+      </div>
+      <p>Tomamos el sistema de 3 campañas de compra-venta tradicional (basado en mecanismos psicológicos de viralidad) y lo mapeamos sobre nuestro embudo operativo real y sobre los 8 perfiles preliminares. El contenido de las campañas se mantiene tal como fue diseñado — no se adaptó al lenguaje de remates — pero cada una encaja de forma natural en una etapa y en un grupo de perfiles distinto.</p>
+    </div>
+
+    <div class="disclaimer reveal">
+      <b>Sobre esta sección:</b> las 3 campañas provienen de un documento de estrategia de contenido para redes sociales, no de datos medidos de Altaltium ni de fuentes públicas. El mapeo hacia el embudo y hacia los perfiles es <b>interpretación propia</b>, construida sobre la lógica que el propio documento ya establece (rol de cada campaña dentro de un funnel).
+    </div>
+
+    <!-- 5.1 EMBUDO OPERATIVO -->
+    <div class="subsec reveal">
+      <div class="subsec-head">
+        <span class="sn">5.1</span>
+        <h3>¿Qué campaña mueve cada etapa del embudo?</h3>
+      </div>
+      <div class="stage-funnel">
+        <div class="stage-box">
+          <div class="stage-n">Etapa 1</div>
+          <div class="stage-name">Interesados</div>
+          <div class="stage-count">21,650 registros</div>
+          <div class="stage-feed">
+            <div class="cname-tag">Campaña 1 · Adivina el Precio</div>
+            <p>Descubrimiento masivo sin rostro. El curiosity gap y el compromiso público (comentar un precio) generan el volumen inicial de contacto — el mismo rol que ya cumplen los mensajes de interesados hoy.</p>
+          </div>
+          <div class="stage-arrow"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></div>
+        </div>
+        <div class="stage-box">
+          <div class="stage-n">Etapa 2</div>
+          <div class="stage-name">CRM</div>
+          <div class="stage-count">1,742 leads</div>
+          <div class="stage-feed">
+            <div class="cname-tag">Campaña 2 · Las Casas que No Ves</div>
+            <p>Escasez y aversión a la pérdida, capturadas vía retargeting y lead form. Es la campaña diseñada explícitamente para producir leads calificados — el mismo objetivo que persigue el seguimiento en CRM.</p>
+          </div>
+          <div class="stage-arrow"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></div>
+        </div>
+        <div class="stage-box">
+          <div class="stage-n">Etapa 3</div>
+          <div class="stage-name">Citas</div>
+          <div class="stage-count">59 registradas</div>
+          <div class="stage-feed">
+            <div class="cname-tag">Campaña 3 · La Energía de tu Casa</div>
+            <p>Confianza transferida (efecto halo) de un canal de nicho ya consolidado. La confianza profunda es lo que convierte un DM en una cita agendada, no solo en un contacto frío.</p>
+          </div>
+          <div class="stage-arrow"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></div>
+        </div>
+        <div class="stage-box">
+          <div class="stage-n">Etapa 4</div>
+          <div class="stage-name">Ventas</div>
+          <div class="stage-count">219 cerradas</div>
+          <div class="stage-feed">
+            <div class="cname-tag">Regla transversal</div>
+            <p>Ninguna campaña cierra la venta por sí sola. Las tres comparten una regla de oro: responder el primer contacto en menos de 5 minutos importa más que cualquier elemento creativo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5.2 CAMPAÑAS x PERFILES -->
+    <div class="subsec reveal">
+      <div class="subsec-head">
+        <span class="sn">5.2</span>
+        <h3>¿A qué perfiles alimenta cada campaña?</h3>
+      </div>
+      <div class="camp-grid">
+        <div class="camp-card">
+          <div class="camp-card-top">
+            <div class="camp-num">Campaña 01 · Sin rostro</div>
+            <div class="camp-name">"Adivina el Precio"</div>
+            <div class="camp-mech">Curiosity gap + anclaje cognitivo + compromiso público</div>
+          </div>
+          <div class="camp-body">
+            <div class="lbl">Por qué encaja</div>
+            <p>Activa exactamente el ejercicio mental que ya hacen los perfiles orientados a comparar y calibrar precio de mercado.</p>
+            <div class="lbl">Perfiles que alimenta</div>
+            <div class="profile-chips">
+              <span class="profile-chip">02 · Primera Vivienda</span>
+              <span class="profile-chip">03 · Dependiente de Crédito</span>
+              <span class="profile-chip">07 · Analítico</span>
+            </div>
+          </div>
+        </div>
+        <div class="camp-card">
+          <div class="camp-card-top">
+            <div class="camp-num">Campaña 02 · Sin rostro</div>
+            <div class="camp-name">"Las Casas que No Ves"</div>
+            <div class="camp-mech">Escasez + FOMO + aversión a la pérdida</div>
+          </div>
+          <div class="camp-body">
+            <div class="lbl">Por qué encaja</div>
+            <p>El framing de "acceso anticipado" habla directo al lenguaje de oportunidad y urgencia con el que estos perfiles ya se acercan a Altaltium.</p>
+            <div class="lbl">Perfiles que alimenta</div>
+            <div class="profile-chips">
+              <span class="profile-chip">01 · Inversionista Patrimonial</span>
+              <span class="profile-chip">04 · Buscador de Oportunidades</span>
+              <span class="profile-chip">05 · Por Necesidad</span>
+            </div>
+          </div>
+        </div>
+        <div class="camp-card">
+          <div class="camp-card-top">
+            <div class="camp-num">Campaña 03 · Con rostro</div>
+            <div class="camp-name">"La Energía de tu Casa"</div>
+            <div class="camp-mech">Confianza transferida (halo) + identidad tribal</div>
+          </div>
+          <div class="camp-body">
+            <div class="lbl">Por qué encaja</div>
+            <p>Estos perfiles avanzan cuando confían en quien les habla, no solo en el precio o la propiedad — el mecanismo de halo resuelve justo esa barrera.</p>
+            <div class="lbl">Perfiles que alimenta</div>
+            <div class="profile-chips">
+              <span class="profile-chip">06 · Aspiracional</span>
+              <span class="profile-chip">08 · Impulsado por la Confianza</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5.3 REGLAS TRANSVERSALES -->
+    <div class="subsec reveal">
+      <div class="subsec-head">
+        <span class="sn">5.3</span>
+        <h3>Reglas que aplican a las tres campañas</h3>
+        <span class="src-tag"><span class="d"></span>Documento de estrategia · mayo 2026</span>
+      </div>
+      <div class="hub" style="background:var(--negro); max-width:100%; text-align:left; padding:26px 30px;">
+        <div class="rule-row"><div class="rule-n">1</div><p><b>85% de los videos se ven en silencio</b> — todo mensaje crítico debe ir en texto en pantalla, en las tres campañas.</p></div>
+        <div class="rule-row"><div class="rule-n">2</div><p><b>Responder en menos de 5 minutos</b> importa más que cualquier elemento creativo — la velocidad de contacto define la conversión.</p></div>
+        <div class="rule-row"><div class="rule-n">3</div><p><b>Ninguna campaña reemplaza a las otras dos</b> — cubren descubrimiento, captura y confianza; el embudo completo necesita las tres funcionando a la vez.</p></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 6. CONCLUSIÓN ============ -->
+<section class="conclusion" id="conclusion">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num" style="color:var(--teal);">06</span>
+      <span class="kicker">Conclusión</span>
+      <h2>Este es el primer nivel de entendimiento del cliente — no el último</h2>
+      <p>Los ocho perfiles anteriores representan un punto de partida sólido, construido con datos reales de interesados, CRM, ventas y redes sociales. Todavía son hipótesis: el siguiente paso es validarlas en campo y convertirlas en una taxonomía formal de clientes.</p>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="tl-item active">
+        <div class="tl-step">FASE 1</div>
+        <h4>Descubrimiento de patrones</h4>
+        <p>Cruce de 8 fuentes de datos y detección de 8 perfiles preliminares.</p>
+        <span class="st done">Completada</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-step">FASE 2</div>
+        <h4>Validación en campo</h4>
+        <p>Contrastar cada perfil con asesores y clientes reales para confirmar o ajustar las hipótesis.</p>
+        <span class="st next">Siguiente paso</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-step">FASE 3</div>
+        <h4>Taxonomía de clientes</h4>
+        <p>Convertir los perfiles validados en una clasificación formal y reproducible.</p>
+        <span class="st future">Próxima etapa</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-step">FASE 4</div>
+        <h4>Clasificación y campañas</h4>
+        <p>Clasificar automáticamente a cada prospecto y personalizar comunicación y campañas.</p>
+        <span class="st future">Próxima etapa</span>
+      </div>
+    </div>
+
+    <p class="closing-line reveal">La pregunta ya no es <b>si</b> podemos identificar quién es cada cliente potencial — es <b>qué tan rápido</b> convertimos este primer entendimiento en una taxonomía que trabaje para nosotros en cada campaña.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER / METODOLOGÍA ============ -->
+<footer>
+  <div class="wrap">
+    <details>
+      <summary>Metodología y fuentes de datos <span class="chev">▾</span></summary>
+      <div class="method-body">
+        <p>Todas las cifras provienen de los archivos de datos operativos de Altaltium. No se utilizó información externa ni estimaciones no verificadas.</p>
+        <table class="src-table">
+          <tr><th>Fuente</th><th>Hoja / archivo</th><th>Registros con dato</th></tr>
+          <tr><td>Interesados</td><td>DATA_INMUEBLES_24.xlsx → Interesados</td><td>21,650</td></tr>
+          <tr><td>CRM</td><td>DATA_INMUEBLES_24.xlsx → CRM</td><td>1,742</td></tr>
+          <tr><td>Citas</td><td>DATA_INMUEBLES_24.xlsx → Citas</td><td>59</td></tr>
+          <tr><td>Ventas cerradas</td><td>DATA_INMUEBLES_24.xlsx → Histórico de Ventas</td><td>219</td></tr>
+          <tr><td>Precio referencia CDMX</td><td>DATA_INMUEBLES_24.xlsx → PrecioPromedioCDMX</td><td>16 alcaldías</td></tr>
+          <tr><td>Facebook</td><td>DATA_REDES_SOCIALES.xlsx → Facebook</td><td>88 publicaciones</td></tr>
+          <tr><td>Instagram</td><td>DATA_REDES_SOCIALES.xlsx → Instagram</td><td>169 publicaciones</td></tr>
+          <tr><td>TikTok</td><td>DATA_REDES_SOCIALES.xlsx → TikTok</td><td>58 publicaciones</td></tr>
+        </table>
+        <p style="margin-top:14px;">Los ocho perfiles son hipótesis de interpretación construidas sobre patrones observados; no constituyen todavía una segmentación validada ni un modelo predictivo.</p>
+
+        <p style="margin-top:22px;"><b>Fuentes públicas usadas en la sección "Panorama de mercado":</b></p>
+        <table class="src-table">
+          <tr><th>Dato</th><th>Fuente</th></tr>
+          <tr><td>Población y hogares CDMX</td><td>INEGI, Censo de Población y Vivienda 2020</td></tr>
+          <tr><td>% de hogares sin vivienda propia</td><td>CONEVAL, 2025</td></tr>
+          <tr><td>% que aspira a comprar casa</td><td>Ipsos Housing Monitor</td></tr>
+          <tr><td>% de búsquedas en canales digitales</td><td>Centro Urbano — entrevista con KAM de Inmuebles24</td></tr>
+          <tr><td>Tráfico y participación de portales</td><td>Semrush; Inmuebles24; Inmowa</td></tr>
+          <tr><td>Uso de redes sociales para buscar inmuebles</td><td>Estudio UANL, Zona Metropolitana de Monterrey</td></tr>
+          <tr><td>Ventas y absorción por zona en CDMX/ZMVM</td><td>Tinsa México by Accumin, 1T2026</td></tr>
+          <tr><td>Zonas de mayor oferta de renta</td><td>El Sol de México, con datos de mercado 2024–2026</td></tr>
+          <tr><td>Colonias preferidas por compradores CDMX</td><td>Encuesta LaHaus CDMX</td></tr>
+          <tr><td>Horarios de mayor actividad en redes</td><td>Comscore México; Sprout Social (nov 2025–feb 2026)</td></tr>
+        </table>
+
+        <p style="margin-top:22px;"><b>Fuente de la sección "Estrategia de campañas → embudo":</b> documento interno de estrategia de contenido "3 Campañas · Compra-Venta Tradicional" (mayo 2026, basado en El Fondo y la Forma de la Viralidad). El mapeo hacia el embudo operativo y hacia los 8 perfiles es interpretación propia; el contenido de las campañas no fue adaptado al lenguaje de remates bancarios.</p>
+      </div>
+    </details>
+
+    <div class="foot-brand">
+      <div><b>Altaltium Real Estate Solutions</b> — La llave de tu futuro</div>
+      <div>Dashboard interno · Fase 1 de Taxonomía de Clientes</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.12});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
