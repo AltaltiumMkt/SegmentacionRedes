@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfiles Preliminares de Cliente — Altaltium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --negro:#000000;
+    --teal:#52BEC0;
+    --cyan:#00FFFF;
+    --gris-oscuro:#3B3B3B;
+    --gris-claro:#EBEBEE;
+    --gris-medio:#DFDFE1;
+    --blanco:#FFFFFF;
+    --serif:'Playfair Display', serif;
+    --sans:'Montserrat', sans-serif;
+    --dato:#8A8D90;
+    --patron:#0E9EA1;
+    --hipotesis:#000000;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    background:var(--blanco);
+    color:var(--negro);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--negro);
+    color:var(--blanco);
+    padding:76px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(115deg, transparent 40%, rgba(82,190,192,0.10) 41%, rgba(82,190,192,0.10) 42%, transparent 43%),
+      linear-gradient(115deg, transparent 55%, rgba(82,190,192,0.06) 56%, rgba(82,190,192,0.06) 58%, transparent 59%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:11.5px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--teal); font-weight:600; margin-bottom:26px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);}
+  .hero h1{
+    font-family:var(--sans); font-weight:800;
+    font-size:clamp(34px, 5vw, 56px);
+    line-height:1.06; max-width:820px; letter-spacing:-0.5px;
+  }
+  .hero h1 em{
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    color:var(--teal);
+  }
+  .hero .sub{
+    font-family:var(--serif); font-style:italic; font-size:19px;
+    color:var(--gris-medio); max-width:640px; margin-top:22px;
+  }
+  .status-pill{
+    margin-top:36px; display:inline-flex; align-items:center; gap:12px;
+    border:1px solid rgba(255,255,255,0.22); border-radius:999px;
+    padding:9px 20px 9px 10px; font-size:13px; color:var(--gris-claro);
+  }
+  .status-pill .tag{
+    background:var(--teal); color:var(--negro); font-weight:700;
+    border-radius:999px; padding:4px 12px; font-size:11.5px; letter-spacing:0.5px;
+  }
+  .hero-foot{
+    margin-top:56px; display:flex; gap:48px; flex-wrap:wrap;
+    border-top:1px solid rgba(255,255,255,0.14); padding-top:26px;
+  }
+  .hero-foot .stat b{
+    display:block; font-size:26px; font-weight:700; color:var(--blanco);
+  }
+  .hero-foot .stat span{
+    font-size:12.5px; color:var(--gris-medio); letter-spacing:0.3px;
+  }
+
+  /* ---------- SECTION shell ---------- */
+  section{padding:78px 0;}
+  .section-head{max-width:700px; margin-bottom:46px;}
+  .kicker{
+    font-size:11.5px; letter-spacing:3px; text-transform:uppercase;
+    color:var(--teal); font-weight:700; margin-bottom:14px; display:block;
+  }
+  .section-head h2{
+    font-size:clamp(26px,3.2vw,38px); font-weight:700; letter-spacing:-0.3px;
+    line-height:1.12;
+  }
+  .section-head p{
+    margin-top:16px; color:var(--gris-oscuro); font-size:15.5px; max-width:640px;
+  }
+  .section-num{
+    font-family:var(--sans); font-weight:800; font-size:15px; color:var(--teal);
+    letter-spacing:1px;
+  }
+
+  /* ---------- INTRO SOURCES ---------- */
+  .src-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:8px;
+  }
+  @media (max-width:900px){ .src-grid{grid-template-columns:repeat(2,1fr);} }
+  .src-card{
+    border:1px solid var(--gris-medio); border-radius:14px; padding:20px 18px;
+    background:var(--gris-claro); transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .src-card:hover{transform:translateY(-4px); box-shadow:0 14px 30px -18px rgba(0,0,0,0.35);}
+  .src-card .ic{
+    width:38px; height:38px; border-radius:10px; background:var(--negro);
+    display:flex; align-items:center; justify-content:center; margin-bottom:14px;
+  }
+  .src-card .ic svg{width:19px; height:19px; stroke:var(--teal); fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;}
+  .src-card h4{font-size:14.5px; font-weight:700; margin-bottom:4px;}
+  .src-card .n{font-size:22px; font-weight:800; color:var(--negro);}
+  .src-card .lbl{font-size:11.5px; color:var(--gris-oscuro);}
+
+  .disclaimer{
+    margin-top:32px; border-left:3px solid var(--teal); background:var(--gris-claro);
+    padding:16px 20px; border-radius:0 10px 10px 0; font-size:14px; color:var(--gris-oscuro);
+  }
+  .disclaimer b{color:var(--negro);}
+
+  /* ---------- FLOW DIAGRAM ---------- */
+  .flow-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px; align-items:stretch;
+  }
+  @media (max-width:900px){ .flow-grid{grid-template-columns:1fr 1fr;} }
+  .flow-card{
+    border:1px solid var(--gris-medio); border-radius:16px; padding:24px 20px;
+    display:flex; flex-direction:column; gap:14px; position:relative; background:var(--blanco);
+  }
+  .flow-card .ic{
+    width:44px; height:44px; border-radius:12px; background:var(--negro);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .flow-card .ic svg{width:22px; height:22px; stroke:var(--teal); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+  .flow-card h4{font-size:15px; font-weight:700;}
+  .flow-card .arrow{font-size:12px; color:var(--teal); font-weight:700; letter-spacing:0.3px;}
+  .flow-card p{font-size:13.5px; color:var(--gris-oscuro);}
+  .flow-card .badge{
+    margin-top:auto; align-self:flex-start; font-size:11px; font-weight:700;
+    background:var(--gris-claro); border-radius:999px; padding:5px 12px; color:var(--negro);
+  }
+  .converge{
+    display:flex; justify-content:center; margin:18px 0;
+  }
+  .converge svg{width:100%; max-width:420px; height:48px;}
+  .hub{
+    margin:0 auto; max-width:560px; text-align:center;
+    background:var(--negro); color:var(--blanco); border-radius:18px; padding:26px 30px;
+  }
+  .hub .tagline{font-size:11.5px; letter-spacing:2.5px; text-transform:uppercase; color:var(--teal); font-weight:700;}
+  .hub h3{font-family:var(--serif); font-style:italic; font-weight:500; font-size:22px; margin-top:10px;}
+  .hub p{font-size:13px; color:var(--gris-medio); margin-top:10px;}
+
+  /* ---------- LEGEND ---------- */
+  .legend{display:flex; gap:22px; flex-wrap:wrap; margin:34px 0 6px;}
+  .legend-item{display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--gris-oscuro); font-weight:600;}
+  .legend-dot{width:10px; height:10px; border-radius:3px;}
+
+  /* ---------- PROFILE CARDS ---------- */
+  .profiles-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:20px;
+  }
+  @media (max-width:820px){ .profiles-grid{grid-template-columns:1fr;} }
+  .pcard{
+    border:1px solid var(--gris-medio); border-radius:18px; overflow:hidden; background:var(--blanco);
+    display:flex; flex-direction:column;
+  }
+  .pcard-top{
+    background:var(--gris-claro); padding:22px 24px; display:flex; align-items:center; gap:16px;
+    border-bottom:1px solid var(--gris-medio);
+  }
+  .pcard-top .ic{
+    width:46px; height:46px; min-width:46px; border-radius:12px; background:var(--teal);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .pcard-top .ic svg{width:23px; height:23px; stroke:var(--negro); fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round;}
+  .pcard-top .num{font-size:11px; font-weight:700; color:var(--teal); letter-spacing:1px;}
+  .pcard-top h3{font-size:18px; font-weight:800; letter-spacing:-0.2px;}
+  .pcard-body{padding:20px 24px 24px; display:flex; flex-direction:column; gap:14px; flex:1;}
+  .field{display:flex; flex-direction:column; gap:5px;}
+  .field .flabel{
+    font-size:10.5px; letter-spacing:1.2px; text-transform:uppercase; font-weight:700;
+    display:flex; align-items:center; gap:6px;
+  }
+  .field .flabel .swatch{width:7px;height:7px;border-radius:2px;}
+  .field p{font-size:13.5px; color:var(--gris-oscuro);}
+  .field .based{font-size:11.5px; color:var(--dato); font-style:italic; margin-top:2px;}
+  .content-tags{display:flex; flex-wrap:wrap; gap:6px;}
+  .content-tags span{
+    font-size:11px; background:var(--negro); color:var(--blanco); border-radius:999px;
+    padding:4px 10px; font-weight:600;
+  }
+  .opp{
+    margin-top:auto; background:var(--gris-claro); border-radius:10px; padding:12px 14px;
+    font-size:12.5px; color:var(--negro); border-left:3px solid var(--teal);
+  }
+  .opp b{display:block; font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--teal); margin-bottom:4px;}
+
+  /* ---------- CONCLUSION ---------- */
+  .conclusion{background:var(--negro); color:var(--blanco);}
+  .conclusion .section-head p{color:var(--gris-medio);}
+  .conclusion .kicker{color:var(--teal);}
+  .timeline{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:44px; position:relative;
+  }
+  @media (max-width:900px){ .timeline{grid-template-columns:1fr 1fr;} }
+  .tl-item{
+    border:1px solid rgba(255,255,255,0.16); border-radius:16px; padding:22px 18px;
+    background:rgba(255,255,255,0.03);
+  }
+  .tl-item.active{border-color:var(--teal); background:rgba(82,190,192,0.08);}
+  .tl-step{font-size:11px; font-weight:800; letter-spacing:1px; color:var(--teal);}
+  .tl-item h4{font-size:15px; font-weight:700; margin:10px 0 8px;}
+  .tl-item p{font-size:12.5px; color:var(--gris-medio);}
+  .tl-item .st{
+    display:inline-block; margin-top:12px; font-size:10.5px; font-weight:700;
+    padding:4px 10px; border-radius:999px; letter-spacing:0.5px;
+  }
+  .st.done{background:var(--teal); color:var(--negro);}
+  .st.next{background:rgba(82,190,192,0.15); color:var(--teal); border:1px solid var(--teal);}
+  .st.future{background:rgba(255,255,255,0.06); color:var(--gris-medio); border:1px solid rgba(255,255,255,0.16);}
+
+  .closing-line{
+    margin-top:56px; padding-top:36px; border-top:1px solid rgba(255,255,255,0.14);
+    font-family:var(--serif); font-style:italic; font-size:22px; max-width:760px; color:var(--gris-claro);
+    line-height:1.5;
+  }
+  .closing-line b{color:var(--teal); font-style:normal; font-family:var(--sans); font-weight:700;}
+
+  /* ---------- METHODOLOGY / FOOTER ---------- */
+  footer{background:var(--gris-claro); padding:44px 0 30px;}
+  details{
+    border:1px solid var(--gris-medio); border-radius:14px; background:var(--blanco); padding:0;
+  }
+  summary{
+    cursor:pointer; padding:18px 22px; font-weight:700; font-size:14px; list-style:none;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary .chev{transition:transform .25s ease; font-size:12px; color:var(--teal);}
+  details[open] summary .chev{transform:rotate(180deg);}
+  .method-body{padding:0 22px 22px; font-size:13px; color:var(--gris-oscuro);}
+  table.src-table{width:100%; border-collapse:collapse; margin-top:12px; font-size:12.5px;}
+  table.src-table th, table.src-table td{
+    text-align:left; padding:9px 10px; border-bottom:1px solid var(--gris-medio);
+  }
+  table.src-table th{color:var(--negro); font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:0.4px;}
+  .foot-brand{
+    margin-top:28px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:12px; color:var(--gris-oscuro);
+  }
+  .foot-brand b{color:var(--negro);}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="dot"></span> Altaltium Real Estate Solutions · Inteligencia de Cliente</div>
+    <h1 class="reveal">Ya podemos ver <em>quién</em> está del otro lado del mensaje.</h1>
+    <p class="sub reveal">Un primer análisis cruzado de interesados, CRM, citas, ventas y redes sociales para descubrir patrones de comportamiento del cliente.</p>
+    <div class="status-pill reveal"><span class="tag">Fase 1 · Descubrimiento</span> Hipótesis de trabajo — aún no es una segmentación definitiva</div>
+
+    <div class="hero-foot reveal">
+      <div class="stat"><b>21,650</b><span>Interesados analizados</span></div>
+      <div class="stat"><b>1,742</b><span>Leads en CRM</span></div>
+      <div class="stat"><b>219</b><span>Ventas cerradas</span></div>
+      <div class="stat"><b>315</b><span>Publicaciones en redes (FB · IG · TikTok)</span></div>
+      <div class="stat"><b>8</b><span>Perfiles preliminares identificados</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 1. INTRODUCCIÓN ============ -->
+<section id="intro">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">01</span>
+      <span class="kicker">Introducción</span>
+      <h2>Un mismo cliente deja huella en ocho lugares distintos</h2>
+      <p>Este análisis combina, por primera vez, información que hasta ahora vivía separada: interesados, CRM, citas, ventas, portales inmobiliarios, Facebook, Instagram y TikTok. El objetivo <b>no es clasificar de forma definitiva</b> a cada cliente, sino descubrir patrones de comportamiento que ya son visibles cuando se observan todas las fuentes juntas.</p>
+    </div>
+
+    <div class="src-grid reveal">
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h4>Interesados</h4>
+        <div class="n">21,650</div>
+        <div class="lbl">Contactos vía portales y web</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
+        <h4>CRM</h4>
+        <div class="n">1,742</div>
+        <div class="lbl">Leads gestionados por asesores</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg></div>
+        <h4>Citas</h4>
+        <div class="n">59</div>
+        <div class="lbl">Citas registradas y asistencia</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20l4-11 4 6 3-4 5 9z"/></svg></div>
+        <h4>Ventas</h4>
+        <div class="n">219</div>
+        <div class="lbl">Expedientes firmados</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
+        <h4>Portales</h4>
+        <div class="n">4</div>
+        <div class="lbl">Fuentes de exposición inmobiliaria</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 6.3 4.6L3 5l1 4"/></svg></div>
+        <h4>Facebook</h4>
+        <div class="n">88</div>
+        <div class="lbl">Publicaciones con métricas</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.6" cy="7.4" r="0.6" fill="var(--teal)"/></svg></div>
+        <h4>Instagram</h4>
+        <div class="n">169</div>
+        <div class="lbl">Publicaciones con métricas</div>
+      </div>
+      <div class="src-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><polygon points="10,8 16,12 10,16"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h4>TikTok</h4>
+        <div class="n">58</div>
+        <div class="lbl">Publicaciones con métricas</div>
+      </div>
+    </div>
+
+    <div class="disclaimer reveal">
+      <b>Nota metodológica:</b> todas las cifras de este dashboard provienen directamente de las bases de datos de Altaltium (julio 2025 – julio 2026). Ningún número fue estimado o inventado. Donde el dato no permite una conclusión definitiva, se presenta como <b>patrón</b> o <b>hipótesis</b>, no como un hecho comprobado.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. DE DONDE VIENEN LOS PERFILES ============ -->
+<section id="sources" style="background:var(--gris-claro);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">02</span>
+      <span class="kicker">¿De dónde provienen los perfiles?</span>
+      <h2>Ningún perfil nace de una sola fuente</h2>
+      <p>Cada perfil preliminar es el resultado de cruzar señales de intención, seguimiento comercial, comportamiento de compra real y consumo de contenido. Así es como se construye cada uno:</p>
+    </div>
+
+    <div class="flow-grid reveal">
+      <div class="flow-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h4>Mensajes e interesados</h4>
+        <div class="arrow">→ Intención de compra</div>
+        <p>Qué tipo de inmueble buscan, en qué rango de precio y con qué urgencia lo comunican.</p>
+        <div class="badge">21,650 mensajes</div>
+      </div>
+      <div class="flow-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
+        <h4>CRM</h4>
+        <div class="arrow">→ Seguimiento y comportamiento comercial</div>
+        <p>Cuántas veces responden, qué tan rápido avanzan y qué motivo dan cuando cierran o abandonan.</p>
+        <div class="badge">1,742 leads</div>
+      </div>
+      <div class="flow-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20l4-11 4 6 3-4 5 9z"/></svg></div>
+        <h4>Ventas</h4>
+        <div class="arrow">→ Características de quienes sí compraron</div>
+        <p>Monto de anticipo, plazos de financiamiento y precio real pagado por quienes cerraron.</p>
+        <div class="badge">219 expedientes</div>
+      </div>
+      <div class="flow-card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 6.3 4.6L3 5l1 4"/></svg></div>
+        <h4>Redes sociales</h4>
+        <div class="arrow">→ Intereses y tipo de contenido</div>
+        <p>Qué formatos y temas generan más vistas, "me gusta" y comentarios reales.</p>
+        <div class="badge">315 publicaciones</div>
+      </div>
+    </div>
+
+    <div class="converge reveal">
+      <svg viewBox="0 0 420 48" preserveAspectRatio="none">
+        <path d="M52 4 L210 40" stroke="#52BEC0" stroke-width="1.6" fill="none"/>
+        <path d="M158 4 L210 40" stroke="#52BEC0" stroke-width="1.6" fill="none"/>
+        <path d="M262 4 L210 40" stroke="#52BEC0" stroke-width="1.6" fill="none"/>
+        <path d="M368 4 L210 40" stroke="#52BEC0" stroke-width="1.6" fill="none"/>
+        <circle cx="210" cy="42" r="4" fill="#52BEC0"/>
+      </svg>
+    </div>
+
+    <div class="hub reveal">
+      <div class="tagline">El cruce de las cuatro fuentes</div>
+      <h3>8 perfiles preliminares de cliente</h3>
+      <p>Hipótesis de trabajo, construidas con datos reales — pendientes de validar en campo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. PERFILES ============ -->
+<section id="profiles">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">03</span>
+      <span class="kicker">Perfiles preliminares identificados</span>
+      <h2>Ocho maneras distintas de llegar a "sí"</h2>
+      <p>Cada tarjeta muestra el mismo tipo de información: motivación principal, comportamiento observado, el contenido con el que probablemente conecta y la oportunidad de comunicación. Son hipótesis de trabajo, no clasificaciones cerradas.</p>
+    </div>
+
+    <div class="legend reveal">
+      <div class="legend-item"><span class="legend-dot" style="background:var(--patron);"></span> Patrón observado en los datos</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--hipotesis);"></span> Hipótesis de interpretación</div>
+      <div class="legend-item"><span class="legend-dot" style="background:var(--dato); border-radius:50%;"></span> Dato de respaldo</div>
+    </div>
+
+    <div class="profiles-grid reveal">
+
+      <!-- 1 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><polyline points="3,17 9,11 13,15 21,6"/><polyline points="14,6 21,6 21,13"/></svg></div>
+          <div><div class="num">PERFIL 01</div><h3>Inversionista Patrimonial</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Hacer crecer o proteger su patrimonio aprovechando el precio de adjudicación.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Concentra su interés en propiedades de mayor valor y solicita cita para producto Outlet o Premium con más frecuencia que el resto.</p>
+            <div class="based">Basado en: 37% de las citas registradas piden producto "Outlet" o "Premium".</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Comparativas de precio por zona</span><span>Retorno de inversión</span><span>Arquitectura</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Contenido con cifras de plusvalía y comparación contra el precio promedio de la zona.</div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></div>
+          <div><div class="num">PERFIL 02</div><h3>Comprador de Primera Vivienda</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Dejar de rentar y acceder, por primera vez, a una vivienda propia.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Se agrupa en el rango de precio más consultado de todo el catálogo y busca principalmente departamentos.</p>
+            <div class="based">Basado en: 27% de los interesados busca propiedades entre $1M–$1.5M; 75% busca departamento.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Historias de logro personal</span><span>Educativo sobre el proceso de compra</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>El video de mayor "me gusta" relativo del año trata sobre la dificultad de comprar una primera vivienda — ese ángulo emocional ya conecta.</div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><line x1="5" y1="19" x2="19" y2="5"/><circle cx="7" cy="7" r="2.4"/><circle cx="17" cy="17" r="2.4"/></svg></div>
+          <div><div class="num">PERFIL 03</div><h3>Comprador Dependiente de Crédito</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Comprar apoyándose en crédito Infonavit, Fovissste o un plan de financiamiento.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>La gran mayoría de las ventas cerradas se pagan a plazos, no de contado, y varias notas de cierre en CRM mencionan un monto de crédito específico.</p>
+            <div class="based">Basado en: 82% de las ventas firmadas usa un plan a 12 mensualidades; anticipo mediano = 40% del precio.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Explicación de trámites</span><span>Requisitos de crédito</span><span>Preguntas frecuentes</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Contenido que simplifica el proceso de crédito y financiamiento paso a paso.</div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15.5" y2="15.5"/></svg></div>
+          <div><div class="num">PERFIL 04</div><h3>Buscador de Oportunidades</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Encontrar el mejor precio posible frente al valor de mercado.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Menciona explícitamente la palabra "remate" en su mensaje inicial y muestra interés recurrente por el producto Outlet.</p>
+            <div class="based">Basado en: 98 mensajes de interesados mencionan "remate"; 20% de las citas piden producto Outlet.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Nuevos desarrollos / oportunidades</span><span>Transparencia del proceso</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Alertas tempranas de nuevas oportunidades — el contenido de un desarrollo específico fue de los más vistos en TikTok.</div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12,7 12,12 16,14"/></svg></div>
+          <div><div class="num">PERFIL 05</div><h3>Comprador por Necesidad</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Resolver una necesidad habitacional inmediata, más que planear una inversión a futuro.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Un grupo relevante de interesados busca renta, no venta, y su primer mensaje suele preguntar directamente por disponibilidad inmediata.</p>
+            <div class="based">Basado en: 1,673 interesados (8%) buscan renta; "¿sigue disponible?" es de las consultas más frecuentes.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Disponibilidad inmediata</span><span>Respuesta rápida por WhatsApp</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Canal de respuesta ágil y contenido con disponibilidad en tiempo real.</div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 16.5,14.5 18,22 12,18 6,22 7.5,14.5 2,9.5 9,9"/></svg></div>
+          <div><div class="num">PERFIL 06</div><h3>Comprador Aspiracional</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Mejorar su estilo de vida y estatus a través de la propiedad que compra.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Se inclina por el rango de precio más alto del catálogo y por el producto Premium al agendar cita.</p>
+            <div class="based">Basado en: 24% de los interesados consulta propiedades por encima de $3M; 17% de las citas piden Premium.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Fotografía editorial de arquitectura</span><span>Estilo de vida</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Storytelling visual aspiracional, consistente con la línea fotográfica actual de la marca.</div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><line x1="5" y1="20" x2="5" y2="12"/><line x1="12" y1="20" x2="12" y2="6"/><line x1="19" y1="20" x2="19" y2="15"/></svg></div>
+          <div><div class="num">PERFIL 07</div><h3>Comprador Analítico</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Decidir con base en comparación de precios y certeza legal, no en impulso.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>Interactúa poco antes de agendar, pero cuando llega a la cita, asiste con una tasa notablemente alta — señal de decisión ya investigada de antemano.</p>
+            <div class="based">Basado en: 79% de tasa de asistencia a citas registradas, con bajo número de actividades previas en CRM.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Comparativos de precio por alcaldía</span><span>Claridad del proceso legal</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Contenido tipo comparador de precios y explicación clara de la viabilidad jurídica del inmueble.</div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="pcard">
+        <div class="pcard-top">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><polyline points="8,12 11,15 16,9"/></svg></div>
+          <div><div class="num">PERFIL 08</div><h3>Comprador Impulsado por la Confianza</h3></div>
+        </div>
+        <div class="pcard-body">
+          <div class="field">
+            <div class="flabel" style="color:var(--hipotesis);"><span class="swatch" style="background:var(--hipotesis);"></span>Motivación principal</div>
+            <p>Vencer el miedo o la desconfianza que genera la palabra "remate bancario" antes de avanzar.</p>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--patron);"><span class="swatch" style="background:var(--patron);"></span>Comportamiento observado</div>
+            <p>El contenido sobre desconfianza y fraude en remates es, de forma consistente, el de mayor alcance en TikTok — muy por encima del contenido de producto.</p>
+            <div class="based">Basado en: el video sobre desconfianza en remates alcanzó 35,000 vistas, el segundo más visto de la cuenta.</div>
+          </div>
+          <div class="field">
+            <div class="flabel" style="color:var(--negro);">Contenido con el que conecta</div>
+            <div class="content-tags"><span>Testimoniales</span><span>Respaldo legal (Despacho Palma y Asociados)</span><span>Transparencia del proceso</span></div>
+          </div>
+          <div class="opp"><b>Oportunidad</b>Contenido de prueba social y respaldo legal explícito para reducir la fricción inicial.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. CONCLUSIÓN ============ -->
+<section class="conclusion" id="conclusion">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num" style="color:var(--teal);">04</span>
+      <span class="kicker">Conclusión</span>
+      <h2>Este es el primer nivel de entendimiento del cliente — no el último</h2>
+      <p>Los ocho perfiles anteriores representan un punto de partida sólido, construido con datos reales de interesados, CRM, ventas y redes sociales. Todavía son hipótesis: el siguiente paso es validarlas en campo y convertirlas en una taxonomía formal de clientes.</p>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="tl-item active">
+        <div class="tl-step">FASE 1</div>
+        <h4>Descubrimiento de patrones</h4>
+        <p>Cruce de 8 fuentes de datos y detección de 8 perfiles preliminares.</p>
+        <span class="st done">Completada</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-step">FASE 2</div>
+        <h4>Validación en campo</h4>
+        <p>Contrastar cada perfil con asesores y clientes reales para confirmar o ajustar las hipótesis.</p>
+        <span class="st next">Siguiente paso</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-step">FASE 3</div>
+        <h4>Taxonomía de clientes</h4>
+        <p>Convertir los perfiles validados en una clasificación formal y reproducible.</p>
+        <span class="st future">Próxima etapa</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-step">FASE 4</div>
+        <h4>Clasificación y campañas</h4>
+        <p>Clasificar automáticamente a cada prospecto y personalizar comunicación y campañas.</p>
+        <span class="st future">Próxima etapa</span>
+      </div>
+    </div>
+
+    <p class="closing-line reveal">La pregunta ya no es <b>si</b> podemos identificar quién es cada cliente potencial — es <b>qué tan rápido</b> convertimos este primer entendimiento en una taxonomía que trabaje para nosotros en cada campaña.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER / METODOLOGÍA ============ -->
+<footer>
+  <div class="wrap">
+    <details>
+      <summary>Metodología y fuentes de datos <span class="chev">▾</span></summary>
+      <div class="method-body">
+        <p>Todas las cifras provienen de los archivos de datos operativos de Altaltium. No se utilizó información externa ni estimaciones no verificadas.</p>
+        <table class="src-table">
+          <tr><th>Fuente</th><th>Hoja / archivo</th><th>Registros con dato</th></tr>
+          <tr><td>Interesados</td><td>DATA_INMUEBLES_24.xlsx → Interesados</td><td>21,650</td></tr>
+          <tr><td>CRM</td><td>DATA_INMUEBLES_24.xlsx → CRM</td><td>1,742</td></tr>
+          <tr><td>Citas</td><td>DATA_INMUEBLES_24.xlsx → Citas</td><td>59</td></tr>
+          <tr><td>Ventas cerradas</td><td>DATA_INMUEBLES_24.xlsx → Histórico de Ventas</td><td>219</td></tr>
+          <tr><td>Precio referencia CDMX</td><td>DATA_INMUEBLES_24.xlsx → PrecioPromedioCDMX</td><td>16 alcaldías</td></tr>
+          <tr><td>Facebook</td><td>DATA_REDES_SOCIALES.xlsx → Facebook</td><td>88 publicaciones</td></tr>
+          <tr><td>Instagram</td><td>DATA_REDES_SOCIALES.xlsx → Instagram</td><td>169 publicaciones</td></tr>
+          <tr><td>TikTok</td><td>DATA_REDES_SOCIALES.xlsx → TikTok</td><td>58 publicaciones</td></tr>
+        </table>
+        <p style="margin-top:14px;">Los ocho perfiles son hipótesis de interpretación construidas sobre patrones observados; no constituyen todavía una segmentación validada ni un modelo predictivo.</p>
+      </div>
+    </details>
+
+    <div class="foot-brand">
+      <div><b>Altaltium Real Estate Solutions</b> — La llave de tu futuro</div>
+      <div>Dashboard interno · Fase 1 de Taxonomía de Clientes</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.12});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
